@@ -15,10 +15,13 @@ func main() {
 
 	flag.Parse()
 
+	addr := fmt.Sprintf(":%d", *httpPort)
+	log.Println("Starting server on ", addr)
+
 	config := gittp.ServerConfig{
 		Path: *dirFlag,
 	}
 
 	handle, _ := gittp.NewGitServer(config)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *httpPort), handle))
+	log.Fatal(http.ListenAndServe(addr, handle))
 }

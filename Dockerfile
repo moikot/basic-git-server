@@ -13,12 +13,13 @@ WORKDIR ${APP_FOLDER}
 ARG TARGETPLATFORM
 RUN CGO_ENABLED=0 go build -a -o /bin/main .
 
-FROM alpine
+FROM --platform=$TARGETPLATFORM alpine
 
 RUN apk --update add git && \
     rm -rf /var/lib/apt/lists/* && \
     rm /var/cache/apk/*
 
-COPY --from=build-env /bin/main /
+COPY --from=build-env /bin/main /app/main
 
-ENTRYPOINT ["/main"]
+EXPOSE 8080
+ENTRYPOINT ["/app/main"]
