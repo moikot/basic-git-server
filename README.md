@@ -1,5 +1,6 @@
 # Basic Git server
 ![ci](https://github.com/moikot/basic-git-server/workflows/ci/badge.svg)
+
 An very basic [GITTP library](https://github.com/adamveld12/gittp) based Git server packaged in a multi-platform Docker image.
 
 Supported platfroms include:
